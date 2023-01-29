@@ -1,0 +1,71 @@
+version: "3.3"
+
+services:
+
+    # db:
+    #     image: postgres:12.8-alpine
+    #     restart: always
+    #     # env_file:  
+    #     #     - .env
+    #     volumes:
+    #     #     - ./database/:/docker-entrypoint-initdb.d
+    #         # - db_data:/var/lib/postgresql/data
+    #         - ./pg_seed:/pg_seed
+    #     environment:
+    #         POSTGRES_USER: "{DB_USER}"
+    #         POSTGRES_PASSWORD: "{DB_PASSWORD}"
+    #         POSTGRES_DB: "{DB_NAME}"
+    #     ports:
+    #         - 5432:5432
+    
+    # version: '3.8'
+    # services:
+    afg_db:
+        image: postgres:14.1-alpine
+        # restart: always
+        environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=afg
+        # - DB_NAME=Budgeteer
+        ports:
+        - '5432:5432'
+        volumes: 
+        - db:/var/lib/postgresql/data
+    # app:
+    #     # env_file: # - .env
+    #     build:
+    #         context: .
+    #         dockerfile: ./Dockerfile
+    #     command: sh -c "python manage.py  runserver 0.0.0.0:5000"
+        
+    #     ports:
+    #         - 5000:5000
+    #         # depends_on:
+    #         #   - db
+            
+    #     volumes:
+    #         - .:/app
+    #     environment:
+    #         PYTHONPATH: /app
+       
+    #     stdin_open: true
+    #     tty: true
+volumes:
+    db:
+        driver: local
+   
+
+   
+
+    # celery-worker:
+    #     # env_file:
+    #     #   - .env
+    #     build:
+    #         context: .
+    #         dockerfile: ./Dockerfile
+    #     command: celery -A budgeteer worker --loglevel=INFO 
+    #     depends_on:
+    #         - app
+    #     volumes:
+    #         - .:/app
