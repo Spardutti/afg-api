@@ -9,7 +9,7 @@ export class CloudinaryService {
   ): Promise<UploadApiResponse | UploadApiErrorResponse> {
     return new Promise((resolve, reject) => {
       const upload = v2.uploader.upload_stream(
-        { folder: process.env.CLOUDINARY_FOLDER },
+        { folder: process.env.CLOUDINARY_FOLDER, resource_type: 'auto' },
         (error: UploadApiErrorResponse, result: UploadApiResponse) => {
           if (error) return reject(error);
           resolve(result);
