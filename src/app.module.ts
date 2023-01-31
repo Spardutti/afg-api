@@ -1,3 +1,4 @@
+import { adminConfig } from './admin-js/adminjs';
 // import { AppModule } from './app.module';
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AudiosModule } from './audios/audios.module';
@@ -7,9 +8,13 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { AudiosController } from './audios/audios.controller';
 import { AudioGenreModule } from './audio-genre/audio-genre.module';
 import { ConfigModule } from '@nestjs/config';
+import { AdminModule } from '@adminjs/nestjs';
 
 @Module({
   imports: [
+    AdminModule.createAdminAsync({
+      useFactory: () => adminConfig,
+    }),
     AudiosModule,
     GenresModule,
     AudioGenreModule,
