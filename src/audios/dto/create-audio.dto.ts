@@ -5,8 +5,8 @@ export class CreateAudioDto {
   @IsNotEmpty()
   name: string;
 
-  @IsNotEmpty()
-  duration: string;
+  // @IsNotEmpty()
+  // duration: number;
 
   @IsNotEmpty()
   price: number;

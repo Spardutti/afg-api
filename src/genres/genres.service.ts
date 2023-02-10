@@ -21,6 +21,9 @@ export class GenresService {
   }
 
   findAll(): Promise<Genre[]> {
-    return this.genresModel.findAll();
+    return this.genresModel.findAll({
+      order: [['name', 'ASC']],
+      attributes: ['name', 'id'],
+    });
   }
 }

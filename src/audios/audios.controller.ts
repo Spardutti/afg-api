@@ -13,7 +13,7 @@ import {
 import { AudiosService } from './audios.service';
 import { AudioInterface } from './interfaces/audio.interface';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
-import { UploadedFile } from '@nestjs/common/decorators';
+import { Patch, UploadedFile } from '@nestjs/common/decorators';
 import { Audio } from './audios.model';
 
 @Controller('audio')
@@ -47,13 +47,10 @@ export class AudiosController {
     return this.audiosService.create(createAudioDto, file);
   }
 
-  // @Post('upload')
-  // @UseInterceptors(FileInterceptor('audioFile'))
-  // async uploadImageToCloudinary(@UploadedFile() file: Express.Multer.File) {
-  //   return await this.cloudinary.uploadFile(file).catch(() => {
-  //     throw new BadRequestException('Invalid file type.');
-  //   });
-  // }
+  @Patch(':id')
+  async edit(@Body() createAudioDto: CreateAudioDto, @Param('id') id: number) {
+    return this.audiosService.edit(createAudioDto, id);
+  }
 
   @Delete(':id')
   async remove(@Param('id') id: number) {

@@ -14,7 +14,7 @@ export class Audio extends Model {
   name: string;
 
   @Column
-  duration: string;
+  duration: number;
 
   @Column(DataType.FLOAT)
   price: number;

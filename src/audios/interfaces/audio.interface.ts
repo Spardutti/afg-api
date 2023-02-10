@@ -1,6 +1,6 @@
 export interface AudioInterface {
   name: string;
-  duration: string;
+  duration: number;
   price: number;
   description: string;
   isPremium: boolean;
